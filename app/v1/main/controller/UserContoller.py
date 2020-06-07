@@ -22,7 +22,7 @@ class UserList(Resource):
         description="Get all users",
         envelope="users",
     )
-    @admin_token_required
+    @token_required
     def get(self):
         users = self.user_service.get_all_users()
         return users, HTTPStatus.OK
@@ -33,6 +33,7 @@ class UserList(Resource):
         code=HTTPStatus.CREATED,
         description="Create new user",
     )
+    @admin_token_required
     def post(self):
         payload = v1_api.payload
         user, exceptions = self.user_service.create_user(payload)
