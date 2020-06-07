@@ -12,6 +12,9 @@ flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 flask-script = "*"
 werkzeug = "==0.16.1"
+pyjwt = "*"
+flask-bcrypt = "*"
+flask-testing = "*"
 
 [requires]
 python_version = "3.7"

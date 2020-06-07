@@ -1,16 +1,17 @@
 import os
+
 from flask_script import Manager
 
 from app import create_app, db
 
-app = create_app(os.getenv('FLASK_ENV', 'development'))
+app = create_app(os.getenv("FLASK_ENV", "development"))
 manager = Manager(app)
 
 
 @manager.command
 def run():
     """Run app server"""
-    app.run(host='0.0.0.0')
+    app.run(host="0.0.0.0")
 
 
 @manager.command
@@ -18,10 +19,10 @@ def create_db():
     """
     create database schema
     """
-    print('creating database schema')
+    print("creating database schema")
     db.create_all()
-    print('done creating database schema')
+    print("done creating database schema")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     manager.run()
