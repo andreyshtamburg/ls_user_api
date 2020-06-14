@@ -1,6 +1,7 @@
 from functools import wraps
 
 from flask import request
+from flask_restplus import abort
 
 from app.v1.main.service.AuthHelper import Auth
 
@@ -12,7 +13,7 @@ def token_required(f):
         token = data.get("data")
 
         if not token:
-            return data, status
+            abort(status, data)
 
         return f(*args, **kwargs)
 
@@ -28,12 +29,11 @@ def admin_token_required(f):
         print(f"token data is {token}")
 
         if not token:
-            return data, status
+            abort(status, data)
 
         admin = token.get("admin")
         if not admin:
-            response_object = {"status": "fail", "message": "admin token required"}
-            return response_object, 401
+            abort(401, "admin token required")
 
         return f(*args, **kwargs)
 

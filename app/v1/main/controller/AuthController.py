@@ -32,5 +32,6 @@ class UserLogout(Resource):
 @ls_auth_ns.route("/token_valid")
 class TokenValidator(Resource):
 
+    @ls_auth_ns.doc("check if token is valid")
     def post(self):
         return Auth.token_valid(request)
