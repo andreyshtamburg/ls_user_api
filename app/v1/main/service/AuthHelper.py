@@ -78,3 +78,12 @@ class Auth:
                 "message": "Provide a valid auth token.",
             }
             return response_object, 401
+
+    @classmethod
+    def token_valid(cls, data):
+        resp, status = cls.get_logged_in_user(data)
+        token = resp.get("data")
+        if not token:
+            return resp, status
+        else:
+            return resp

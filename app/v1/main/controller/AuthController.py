@@ -27,3 +27,10 @@ class UserLogout(Resource):
     def post(self):
         auth_header = request.headers.get("Authorization")
         return Auth.logout_user(data=auth_header)
+
+
+@ls_auth_ns.route("/token_valid")
+class TokenValidator(Resource):
+
+    def post(self):
+        return Auth.token_valid(request)
